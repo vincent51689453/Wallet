@@ -5,10 +5,11 @@
 '''
 from datetime import datetime
 import xlrd
+import codebook
 
 class MyWallet():
     '''
-    year             <int>     :  year of the wallet
+    year             <int>     :  year of the Wallet
     workbook         <object>  :  xlsx workbook
     worksheet        <object>  :  xlsx worksheet
     max_ros          <int>     :  maximum rows in xlsx file
@@ -16,9 +17,7 @@ class MyWallet():
     monthly_initial  <float>   :  monthly money initial saving
     monthly_final    <float>   :  monthly money final saving
     monthly_salary   <float>   :  monthly money salary
-    annual_remain    <float>   :  annual money remains
-    annual_initial   <float>   :  monthly money initial saving
-    annual_final     <float>   :  monthly money final saving
+    annual_remain    <float>   :  annual money remains (sum of monthly_remains)
     all_records      <list>    :  all records in a xlsx file
     '''
     def __init__(self,year):
@@ -32,15 +31,40 @@ class MyWallet():
         self.monthly_final = 0
         self.monthly_salary = 0
         self.annual_remain = 0
-        self.annual_initial = 0
-        self.annual_final = 0
         self.monthly_expense = []
 
         self.all_records = []
 
-    def calculae_annual_remain(self):
-        # TODO
-        pass
+    def check_xlsx_exist(self,month):
+        monthly_file = './{}/{}.xlsx'.format(self.year,month)
+        try:
+            self.workbook = xlrd.open_workbook(monthly_file)
+            print("[Wallet] {} FOUND".format(monthly_file))
+            return True
+        except:
+            print("[Wallet] {} NOT FOUND".format(monthly_file))
+            return False
+
+    def calculate_annual_remain(self):
+        x = 1
+        # Go through all the months
+        while x <= 12:
+            month = list(codebook.months.keys())[list(codebook.months.values()).index(x)]
+            file_found = self.check_xlsx_exist(month)
+            if file_found:
+                monthly_file = './{}/{}.xlsx'.format(self.year,month)
+                print("[Wallet] Reading file: {}".format(monthly_file))
+                self.workbook = xlrd.open_workbook(monthly_file)
+                self.worksheet = self.workbook.sheet_by_index(0)
+                self.get_max_row()
+                self.calculate_monthly_remain()
+                self.annual_remain += self.monthly_remain
+                self.annual_remain = round(self.annual_remain,2)
+            else:
+                # Ignore that month
+                self.annual_remain += 0
+            x += 1
+        print("[Wallet] Monthly Remain: ${}".format(self.monthly_remain))
 
     def get_monthly_salary(self):
         salary_find = False
@@ -57,12 +81,14 @@ class MyWallet():
                 
     def calculate_monthly_remain(self):
         self.monthly_initial = self.all_records[0][2]
+        # TODO: Monthly_final should use last non-zero value
         self.monthly_final = self.all_records[-1][4]
         self.monthly_remain = self.monthly_final - self.monthly_initial
         self.monthly_remain = round(self.monthly_remain,2)
         print("[Wallet] Monthly Initial: ${:.2f} | Monthly Final: $ {:.2f} | Monthly Remain: $ {:.2f}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
 
     def get_max_row(self):
+        self.all_records = []
         if self.worksheet is not None:
             # Unreasonably large value
             max_data = 100
