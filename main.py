@@ -21,9 +21,9 @@ def main():
     monthly_json = vincent_wallet.get_monthly_expense(currentMonth,True)
     node_red.publish_mqtt_message(1,monthly_json)
 
-    # Publish Money Flow (monthly & annually)
+    # Publish Money Flow (monthly & annual)
     vincent_wallet.calculate_monthly_remain()
-    message = "{\"monthly_remain\":\""+str(vincent_wallet.monthly_remain)+"\",\"annually_remain\":\""+str(vincent_wallet.annually_remain)+"\"}"
+    message = "{\"monthly_remain\":\""+str(vincent_wallet.monthly_remain)+"\",\"annual_remain\":\""+str(vincent_wallet.annual_remain)+"\"}"
     node_red.publish_mqtt_message(2,message)
     
     # Publish General Info

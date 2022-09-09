@@ -16,9 +16,9 @@ class MyWallet():
     monthly_initial  <float>   :  monthly money initial saving
     monthly_final    <float>   :  monthly money final saving
     monthly_salary   <float>   :  monthly money salary
-    annually_remain  <float>   :  annually money remains
-    annually_initial <float>   :  monthly money initial saving
-    annually_final   <float>   :  monthly money final saving
+    annual_remain  <float>     :  annual money remains
+    annual_initial <float>     :  monthly money initial saving
+    annual_final   <float>     :  monthly money final saving
     '''
     def __init__(self,year):
         self.year = year
@@ -30,10 +30,14 @@ class MyWallet():
         self.monthly_initial = 0
         self.monthly_final = 0
         self.monthly_salary = 0
-        self.annually_remain = 0
-        self.annually_initial = 0
-        self.annually_final = 0
+        self.annual_remain = 0
+        self.annual_initial = 0
+        self.annual_final = 0
         self.monthly_expense = []
+
+    def calculae_annual_remain(self):
+        # TODO
+        pass
 
     def get_monthly_salary(self):
         for i in range(0,len(self.monthly_expense)):

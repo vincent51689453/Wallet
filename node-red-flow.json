@@ -750,9 +750,9 @@
             },
             {
                 "t": "set",
-                "p": "annually_remain",
+                "p": "annual_remain",
                 "pt": "global",
-                "to": "payload.annually_remain",
+                "to": "payload.annual_remain",
                 "tot": "msg"
             }
         ],
@@ -877,7 +877,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "annually_remain",
+        "payload": "annual_remain",
         "payloadType": "global",
         "x": 170,
         "y": 600,
