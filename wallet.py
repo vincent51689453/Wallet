@@ -40,19 +40,22 @@ class MyWallet():
         pass
 
     def get_monthly_salary(self):
+        # TODO: Change len(self.monthly_expense) to loop through the entire file
         for i in range(0,len(self.monthly_expense)):
             if (self.monthly_expense[i][0] == 'salary')or(self.monthly_expense[i][0] == 'Salary'):
                 self.monthly_salary = self.monthly_expense[i][3]
-                print("[Wallet] Monthly Salary: $ {}".format(self.monthly_salary))
+                print("[Wallet] Monthly Salary: $ {:.2f}".format(self.monthly_salary))
             else:
                 # Approximate value
+                print("[Wallet] No Salary find. Use default value = {}".format(4088))
                 self.monthly_salary = 4088
                 
     def calculate_monthly_remain(self):
         self.monthly_initial = self.monthly_expense[-1][2]
         self.monthly_final = self.monthly_expense[0][4]
         self.monthly_remain = self.monthly_final - self.monthly_initial
-        print("[Wallet] Monthly Initial: ${} | Monthly Final: $ {} | Monthly Remain: $ {}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
+        self.monthly_remain = round(self.monthly_remain,2)
+        print("[Wallet] Monthly Initial: ${:.2f} | Monthly Final: $ {:.2f} | Monthly Remain: $ {:.2f}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
 
     def get_max_row(self):
         if self.worksheet is not None:
@@ -82,6 +85,7 @@ class MyWallet():
         monthly_json_output = '{'
 
         try:
+            z = 0
             # Get the latest max_data
             for i in reversed(range((self.max_row-max_data),self.max_row)):
                 print("[Wallet]", end='\t')
@@ -89,7 +93,7 @@ class MyWallet():
                 for j in range(0,5):
                     # Item
                     if j == 0:
-                        monthly_json_output += "\"item{}\":\"".format(i) + str(self.worksheet.cell_value(i, j)) + '\",'
+                        monthly_json_output += "\"item{}\":\"".format(z) + str(self.worksheet.cell_value(i, j)) + '\",'
                         single_expense.append(str(self.worksheet.cell_value(i, j)))
                     # Date
                     elif j == 1:
@@ -98,34 +102,42 @@ class MyWallet():
                         # Remove Hour:Minute:Second because it is not necessary
                         date = date.date()
                         # Write as a json message
-                        monthly_json_output += "\"date{}\":\"".format(i,j) + str(date) + '\",'
+                        monthly_json_output += "\"date{}\":\"".format(z) + str(date) + '\",'
                         if show_detail:
                             print(date, end='\t')
                             single_expense.append(str(date))
                     # Previous Saving
                     elif j == 2:
                         money = self.worksheet.cell_value(i, j)
-                        monthly_json_output += "\"previous{}\":\"".format(i,j) + '$' + str(money) + '\",'
+                        money = round(money,2)
+                        monthly_json_output += "\"previous{}\":\"".format(z) + '$' + str(money) + '\",'
                         single_expense.append(money)
                     # Cost
                     elif j == 3:
                         money = self.worksheet.cell_value(i, j)
-                        monthly_json_output += "\"cost{}\":\"".format(i,j) + '$' + str(money) + '\",'
+                        money = round(money,2)
+                        monthly_json_output += "\"cost{}\":\"".format(z) + '$' + str(money) + '\",'
                         single_expense.append(money)
                     # Current Saving
                     elif j == 4:
                         money = self.worksheet.cell_value(i, j)
-                        monthly_json_output += "\"current{}\":\"".format(i,j) + '$' + str(money) + '\",'
+                        money = round(money,2)
+                        monthly_json_output += "\"current{}\":\"".format(z) + '$' + str(money) + '\",'
                         single_expense.append(money)
                     else:
                         pass
                      # Ignore the date because it is printed previously
                     if (show_detail and j != 1):
-                        print(self.worksheet.cell_value(i, j), end='\t')
+                        try:
+                            print('{:.2f}'.format(float(self.worksheet.cell_value(i, j))), end='\t')
+                        except:
+                            print(self.worksheet.cell_value(i, j), end='\t')
 
                 self.monthly_expense.append(single_expense)
                 if show_detail:
                     print('')
+                
+                z += 1
 
             # Wrap Up the JSON message
             if monthly_json_output is not None:
