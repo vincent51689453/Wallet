@@ -3,6 +3,7 @@
 @@@ Date  : 8 Sep 2022
 @@@ About : Calculating All Financial Expense
 '''
+from audioop import reverse
 from datetime import datetime
 import xlrd
 import codebook
@@ -81,8 +82,16 @@ class MyWallet():
                 
     def calculate_monthly_remain(self):
         self.monthly_initial = self.all_records[0][2]
-        # TODO: Monthly_final should use last non-zero value
-        self.monthly_final = self.all_records[-1][4]
+        # Monthly_final should use last non-zero value
+        for i in reversed(range(0,len(self.all_records))):
+            x = self.all_records[i][4]
+            if x == 0:
+                # ignore
+                continue
+            else:
+                # Once non-zero value found, break
+                self.monthly_final = x
+                break
         self.monthly_remain = self.monthly_final - self.monthly_initial
         self.monthly_remain = round(self.monthly_remain,2)
         print("[Wallet] Monthly Initial: ${:.2f} | Monthly Final: $ {:.2f} | Monthly Remain: $ {:.2f}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
