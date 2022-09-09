@@ -47,7 +47,7 @@ class MyWallet():
     def calculate_monthly_remain(self):
         self.monthly_initial = self.monthly_expense[-1][2]
         self.monthly_final = self.monthly_expense[0][4]
-        self.monthly_remain = self.monthly_initial - self.monthly_final
+        self.monthly_remain = self.monthly_final - self.monthly_initial
         print("[Wallet] Monthly Initial: ${} | Monthly Final: $ {} | Monthly Remain: $ {}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
 
     def get_max_row(self):
