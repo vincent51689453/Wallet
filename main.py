@@ -17,8 +17,8 @@ def main():
     vincent_wallet = wallet.MyWallet('2022') 
 
     # Publish Monthly Expense (based on system datetime)
-    currentMonth = list(codebook.months.keys())[list(codebook.months.values()).index(datetime.now().month)]
-    monthly_json = vincent_wallet.get_monthly_expense(currentMonth,True)
+    #currentMonth = list(codebook.months.keys())[list(codebook.months.values()).index(datetime.now().month)]
+    monthly_json = vincent_wallet.get_monthly_expense('Aug',True)
     node_red.publish_mqtt_message(1,monthly_json)
 
     # Publish Money Flow (monthly & annual)
@@ -31,8 +31,11 @@ def main():
     annual_pretax_income = 65000
     owner_position = 'Test Engineer'
     vincent_wallet.get_monthly_salary()
-    message = "{\"owner\":\""+owner_name+"\",\"position\":\""+owner_position+"\",\"annual_pretax_income\":\""+str(annual_pretax_income)+"\",\"month_aftertax_income\":\""+str(vincent_wallet.monthly_salary)+"\"}"
+    message = "{\"owner\":\""+owner_name+"\",\"position\":\""+owner_position+"\",\"annual_pretax_income\":\""+ '$' + str(annual_pretax_income)+"\",\"month_aftertax_income\":\""+ '$'+str(vincent_wallet.monthly_salary)+"\"}"
     node_red.publish_mqtt_message(0,message)
+
+    # Publish Other Bank Info
+
 
 if __name__ == '__main__':
     main()

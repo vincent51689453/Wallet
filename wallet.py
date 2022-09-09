@@ -16,9 +16,10 @@ class MyWallet():
     monthly_initial  <float>   :  monthly money initial saving
     monthly_final    <float>   :  monthly money final saving
     monthly_salary   <float>   :  monthly money salary
-    annual_remain  <float>     :  annual money remains
-    annual_initial <float>     :  monthly money initial saving
-    annual_final   <float>     :  monthly money final saving
+    annual_remain    <float>   :  annual money remains
+    annual_initial   <float>   :  monthly money initial saving
+    annual_final     <float>   :  monthly money final saving
+    all_records      <list>    :  all records in a xlsx file
     '''
     def __init__(self,year):
         self.year = year
@@ -35,24 +36,28 @@ class MyWallet():
         self.annual_final = 0
         self.monthly_expense = []
 
+        self.all_records = []
+
     def calculae_annual_remain(self):
         # TODO
         pass
 
     def get_monthly_salary(self):
-        # TODO: Change len(self.monthly_expense) to loop through the entire file
-        for i in range(0,len(self.monthly_expense)):
-            if (self.monthly_expense[i][0] == 'salary')or(self.monthly_expense[i][0] == 'Salary'):
-                self.monthly_salary = self.monthly_expense[i][3]
+        salary_find = False
+        for i in range(0,len(self.all_records)):
+            if (self.all_records[i][0] == 'salary')or(self.all_records[i][0] == 'Salary'):
+                self.monthly_salary = self.all_records[i][3]
                 print("[Wallet] Monthly Salary: $ {:.2f}".format(self.monthly_salary))
-            else:
-                # Approximate value
-                print("[Wallet] No Salary find. Use default value = {}".format(4088))
-                self.monthly_salary = 4088
+                salary_find = True
+
+        # Approximate value
+        if not salary_find:
+            print("[Wallet] No Salary find. Use default value = {}".format(4088))
+            self.monthly_salary = 4088
                 
     def calculate_monthly_remain(self):
-        self.monthly_initial = self.monthly_expense[-1][2]
-        self.monthly_final = self.monthly_expense[0][4]
+        self.monthly_initial = self.all_records[0][2]
+        self.monthly_final = self.all_records[-1][4]
         self.monthly_remain = self.monthly_final - self.monthly_initial
         self.monthly_remain = round(self.monthly_remain,2)
         print("[Wallet] Monthly Initial: ${:.2f} | Monthly Final: $ {:.2f} | Monthly Remain: $ {:.2f}".format(self.monthly_initial,self.monthly_final,self.monthly_remain))
@@ -64,7 +69,11 @@ class MyWallet():
             self.max_row = 0
             try:
                 for i in range(0,max_data):
-                    x = self.worksheet.cell_value(i, 0)
+                    k = []
+                    for j in range(0,5):
+                        x = self.worksheet.cell_value(i, j)
+                        k.append(x)
+                    self.all_records.append(k)
                     self.max_row += 1
             except:
                 pass
