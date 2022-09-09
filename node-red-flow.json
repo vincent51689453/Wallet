@@ -1,0 +1,373 @@
+[
+    {
+        "id": "e375becaf798991c",
+        "type": "change",
+        "z": "6c9ac6b03ea92298",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "item0",
+                "pt": "global",
+                "to": "payload.item0",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date0",
+                "pt": "global",
+                "to": "payload.date0",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous0",
+                "pt": "global",
+                "to": "payload.previous0",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost0",
+                "pt": "global",
+                "to": "payload.cost0",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current0",
+                "pt": "global",
+                "to": "payload.current0",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item1",
+                "pt": "global",
+                "to": "payload.item1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date1",
+                "pt": "global",
+                "to": "payload.date1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous1",
+                "pt": "global",
+                "to": "payload.previous1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost1",
+                "pt": "global",
+                "to": "payload.cost1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current1",
+                "pt": "global",
+                "to": "payload.current1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item2",
+                "pt": "global",
+                "to": "payload.item2",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date2",
+                "pt": "global",
+                "to": "payload.date2",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous2",
+                "pt": "global",
+                "to": "payload.previous2",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost2",
+                "pt": "global",
+                "to": "payload.cost2",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current2",
+                "pt": "global",
+                "to": "payload.current2",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item3",
+                "pt": "global",
+                "to": "payload.item3",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date3",
+                "pt": "global",
+                "to": "payload.date3",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous3",
+                "pt": "global",
+                "to": "payload.previous3",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost3",
+                "pt": "global",
+                "to": "payload.cost3",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current3",
+                "pt": "global",
+                "to": "payload.current3",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item4",
+                "pt": "global",
+                "to": "payload.item4",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date4",
+                "pt": "global",
+                "to": "payload.date4",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous4",
+                "pt": "global",
+                "to": "payload.previous4",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost4",
+                "pt": "global",
+                "to": "payload.cost4",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current4",
+                "pt": "global",
+                "to": "payload.current4",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item5",
+                "pt": "global",
+                "to": "payload.item5",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date5",
+                "pt": "global",
+                "to": "payload.date5",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous5",
+                "pt": "global",
+                "to": "payload.previous5",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost5",
+                "pt": "global",
+                "to": "payload.cost5",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current5",
+                "pt": "global",
+                "to": "payload.current5",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item6",
+                "pt": "global",
+                "to": "payload.item6",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date6",
+                "pt": "global",
+                "to": "payload.date6",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous6",
+                "pt": "global",
+                "to": "payload.previous6",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost6",
+                "pt": "global",
+                "to": "payload.cost6",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current6",
+                "pt": "global",
+                "to": "payload.current6",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item7",
+                "pt": "global",
+                "to": "payload.item7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date7",
+                "pt": "global",
+                "to": "payload.date7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous7",
+                "pt": "global",
+                "to": "payload.previous7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost7",
+                "pt": "global",
+                "to": "payload.cost7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current7",
+                "pt": "global",
+                "to": "payload.current7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item8",
+                "pt": "global",
+                "to": "payload.item8",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date8",
+                "pt": "global",
+                "to": "payload.date8",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous8",
+                "pt": "global",
+                "to": "payload.previous8",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost8",
+                "pt": "global",
+                "to": "payload.cost8",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current8",
+                "pt": "global",
+                "to": "payload.current8",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "item9",
+                "pt": "global",
+                "to": "payload.item9",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "date9",
+                "pt": "global",
+                "to": "payload.date9",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "previous9",
+                "pt": "global",
+                "to": "payload.previous9",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cost9",
+                "pt": "global",
+                "to": "payload.cost9",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "current9",
+                "pt": "global",
+                "to": "payload.current9",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [
+                "93fc073836cddd77",
+                "a8d06bf6f037f3b4"
+            ]
+        ]
+    }
+]
